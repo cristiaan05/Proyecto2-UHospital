@@ -1,7 +1,9 @@
-from flask import Flask,jsonify,request
+from flask import Flask,jsonify,request,render_template
 from flask_cors import CORS
+from flask_material import Material
 
 app= Flask(__name__)
+Material(app)
 CORS(app)
 from products import products
 
@@ -58,7 +60,7 @@ def deleteProduct(product_name):
 
 @app.route('/')
 def index():
-    return "<H1>QUE ONDA ESTE ES MI PROYECTO Y LO ESTAS VIENDO<H1>"
+    return render_template("index.html")
 
 if __name__=='__main__': 
     app.run(threaded=True,debug=True,port=4000)
