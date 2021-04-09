@@ -56,6 +56,9 @@ def deleteProduct(product_name):
         }) 
     return jsonify({"message":"Product Not found"})  
 
+@app.route('/')
+def index():
+    return "<H1>QUE ONDA ESTE ES MI PROYECTO Y LO ESTAS VIENDO<H1>"
 
 if __name__=='__main__': 
     app.run(threaded=True,debug=True,port=4000)
