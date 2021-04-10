@@ -1,11 +1,18 @@
-from flask import Flask,jsonify,request,render_template
+from flask import Flask,jsonify,request,render_template,url_for,redirect
 from flask_cors import CORS
 from flask_material import Material
 
 app= Flask(__name__)
 Material(app)
 CORS(app)
-from products import products
+# from products import products
+from User import User
+import json
+Users=[]
+ 
+# CREANDO USUARIO ADMINISTRADO
+Users.append(User("Cesar","Reyes","01-01-01","M","admin","1234","12345678"))
+Users.append(User("Ariel","Bautista","01-01-01","M","admin2","1234","12345678"))
 
 @app.route('/ping')
 
@@ -62,9 +69,49 @@ def deleteProduct(product_name):
 def index():
     return render_template("index.html")
 
-@app.route('/login')
+@app.route('/login',methods=['GET','POST'])
 def login():
+    if request.method=='POST':
+        global Users
+        username=request.form['username']
+        password=request.form['password']
+        print("hola")
+        for user in Users:
+            if user.username==username and user.password==password:
+                ##return(jsonify(user.nombre))
+                return redirect(url_for('getAdmins'))
+
     return render_template("login.html")
+
+@app.route('/admin')
+def getAdmins():
+    global Users
+    Datos=[]
+    for user in Users:
+       admin={
+            'Nombre':user.nombre,
+            'Apellido':user.appellido,
+            'Telefono':user.telefono
+        }
+       Datos.append(admin)
+            #Datos.append(admin)        
+    return jsonify({
+            "message":"Product Deleted",
+            "product": Datos
+        }) 
+        
+    ##return render_template("index.html")
+    # global Users
+    # Datos=[]
+    # for user in Users:
+    #     admin={
+    #         'Nombre':user.nombre,
+    #         'Apellido':user.appellido,
+    #         'Telefono':user.telefono
+    #     }
+    #     Datos.append(admin) 
+   ## return(jsonify(Datos))
+    
 
 if __name__=='__main__': 
     app.run(threaded=True,debug=True,port=4000)
