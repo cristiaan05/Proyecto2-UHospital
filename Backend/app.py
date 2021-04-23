@@ -203,7 +203,7 @@ def getDoctores():
     Datos = []
     for doctor in Doctores:
         doctor = {
-            'Id':doctor.id,
+            'Id': doctor.id,
             'Nombre': doctor.nombre,
             'Apellido': doctor.appellido,
             'FechaNacimiento': doctor.fechaNacimiento,
@@ -534,7 +534,7 @@ def eliminarDoctor(doctorId):
                 'Sexo': doctor.sexo,
                 'Username': doctor.username,
                 'Passsword': doctor.password,
-                'Especialidad':doctor.especialidad,
+                'Especialidad': doctor.especialidad,
                 'Telefono': doctor.telefono
             }
             Doctores.remove(doctor)
