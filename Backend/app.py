@@ -153,7 +153,6 @@ def cargarMedicamentos():
 
 @app.route('/medicamentos')
 def getMedicamentos():
-    # return render_template("modAdmin.html")
     global Medicamentos
     Datos = []
     for med in Medicamentos:
@@ -164,7 +163,6 @@ def getMedicamentos():
             'Cantidad': med.cantidad,
         }
         Datos.append(admin)
-        # Datos.append(admin)
 
     return jsonify({
         "message": "Medicamentos",
