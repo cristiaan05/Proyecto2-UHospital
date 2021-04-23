@@ -205,7 +205,7 @@ def getDoctores():
         doctor = {
             'Id': doctor.id,
             'Nombre': doctor.nombre,
-            'Apellido': doctor.appellido,
+            'Apellido': doctor.apellido,
             'FechaNacimiento': doctor.fechaNacimiento,
             'Sexo': doctor.sexo,
             'Username': doctor.username,
@@ -303,7 +303,7 @@ def getDoctorId(doctorId):
             doctorr = {
                 'Id': doctor.id,
                 'Nombre': doctor.nombre,
-                'Apellido': doctor.appellido,
+                'Apellido': doctor.apellido,
                 'Fecha Nacimiento': doctor.fechaNacimiento,
                 'Sexo': doctor.sexo,
                 'Username': doctor.username,
