@@ -354,6 +354,7 @@ def getMedicamentoId(medicamentoId):
     for medicamento in Medicamentos:
         if medicamento.id == medicamentoId:
             medicamentoo = {
+                'Id':medicamento.id,
                 'Nombre': medicamento.nombre,
                 'Precio': medicamento.precio,
                 'Descripcion': medicamento.descripcion,
