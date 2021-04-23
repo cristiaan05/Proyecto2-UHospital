@@ -230,7 +230,7 @@ def getEnfermeras():
         enfermera = {
             'Nombre': enfermera.nombre,
             'Apellido': enfermera.apellido,
-            'Fecha Nacimiento': enfermera.fechaNacimiento,
+            'FechaNacimiento': enfermera.fechaNacimiento,
             'Sexo': enfermera.sexo,
             'Username': enfermera.username,
             'Passsword': enfermera.password,
@@ -240,7 +240,7 @@ def getEnfermeras():
         # Datos.append(admin)
     return jsonify({
         "message": "Enfermeras",
-        "product": Datos
+        "enfermeras": Datos
     })
 
 
@@ -331,7 +331,7 @@ def getEnfermeraId(enfermeraId):
             enfermeraa = {
                 'Nombre': enfermera.nombre,
                 'Apellido': enfermera.appellido,
-                'Fecha Nacimiento': enfermera.fechaNacimiento,
+                'FechaNacimiento': enfermera.fechaNacimiento,
                 'Sexo': enfermera.sexo,
                 'Username': enfermera.username,
                 'Passsword': enfermera.password,
@@ -444,17 +444,17 @@ def editarEnfermera(enfermeraId):
     Datos = []
     for enfermera in Enfermeras:
         if enfermera.id == enfermeraId:
-            enfermera.nombre = request.form['Nombre']
-            enfermera.apellido = request.form['Apellido']
-            enfermera.fechaNacimiento = request.form['FechaNacimiento']
-            enfermera.sexo = request.form['Sexo']
-            enfermera.username = request.form['Username']
-            enfermera.password = request.form['Password']
-            enfermera.telefono = request.form['Telefono']
+            enfermera.nombre = request.json['nombre']
+            enfermera.apellido = request.json['apellido']
+            enfermera.fechaNacimiento = request.json['fechaNacimiento']
+            enfermera.sexo = request.json['sexo']
+            enfermera.username = request.json['username']
+            enfermera.password = request.json['password']
+            enfermera.telefono = request.json['telefono']
             enfermeraa = {
                 'Nombre': enfermera.nombre,
                 'Apellido': enfermera.apellido,
-                'Fecha Nacimiento': enfermera.fechaNacimiento,
+                'FechaNacimiento': enfermera.fechaNacimiento,
                 'Sexo': enfermera.sexo,
                 'Username': enfermera.username,
                 'Passsword': enfermera.password,
@@ -545,6 +545,30 @@ def eliminarDoctor(doctorId):
         return jsonify({
             "message": "No se encontro el paciente"
         })
+        
+@app.route('/eliminarEnfermera/<int:enfermeraId>', methods=['DELETE'])
+def eliminarEnfermera(enfermeraId):
+    Datos = []
+    for enfermera in Enfermeras:
+        if enfermera.id == enfermeraId:
+            enfermeraa = {
+                'Nombre': enfermera.nombre,
+                'Apellido': enfermera.apellido,
+                'Fecha Nacimiento': enfermera.fechaNacimiento,
+                'Sexo': enfermera.sexo,
+                'Username': enfermera.username,
+                'Passsword': enfermera.password,
+                'Telefono': enfermera.telefono
+            }
+            Enfermeras.remove(enfermera)
+            return jsonify({
+                "message": "Enfermera eliminada"
+            })
+    if len(Datos) <= 0:
+        return jsonify({
+            "message": "No se encontro la enfermera"
+        })
+
 
 
 # ------------------------MODULO-----------PACIENTE---------------------------------------------------
