@@ -410,14 +410,14 @@ def editarDoctor(doctorId):
     Datos = []
     for doctor in Doctores:
         if doctor.id == doctorId:
-            doctor.nombre = request.json['Nombre']
-            doctor.apellido = request.json['Apellido']
-            doctor.fechaNacimiento = request.json['FechaNacimiento']
-            doctor.sexo = request.json['Sexo']
-            doctor.username = request.json['Username']
-            doctor.password = request.json['Password']
-            doctor.especialidad = request.json['Especialidad']
-            doctor.telefono = request.json['Telefono']
+            doctor.nombre = request.json['nombre']
+            doctor.apellido = request.json['apellido']
+            doctor.fechaNacimiento = request.json['fechaNacimiento']
+            doctor.sexo = request.json['sexo']
+            doctor.username = request.json['username']
+            doctor.password = request.json['password']
+            doctor.especialidad = request.json['especialidad']
+            doctor.telefono = request.json['telefono']
             doctorr = {
                 'Nombre': doctor.nombre,
                 'Apellido': doctor.apellido,
