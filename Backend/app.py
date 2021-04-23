@@ -203,6 +203,7 @@ def getDoctores():
     Datos = []
     for doctor in Doctores:
         doctor = {
+            'Id':doctor.id,
             'Nombre': doctor.nombre,
             'Apellido': doctor.appellido,
             'FechaNacimiento': doctor.fechaNacimiento,
