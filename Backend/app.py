@@ -216,7 +216,7 @@ def getDoctores():
         # Datos.append(admin)
     return jsonify({
         "message": "Doctores",
-        "product": Datos
+        "doctores": Datos
     })
 
 
