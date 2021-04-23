@@ -537,7 +537,7 @@ def eliminarDoctor(doctorId):
                 'Especialidad':doctor.especialidad,
                 'Telefono': doctor.telefono
             }
-            Doctores.remove(paciente)
+            Doctores.remove(doctor)
             return jsonify({
                 "message": "Doctor eliminado"
             })
