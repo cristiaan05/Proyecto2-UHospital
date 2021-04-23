@@ -145,7 +145,7 @@ def cargarMedicamentos():
             descripcion = row['Descripcion']
             cantidad = row['Cantidad']
             Medicamentos.append(Medicamento(
-                id, nombre, precio, descripcion, cantidad))
+                contador_med, nombre, precio, descripcion, cantidad))
         # print (results)
     return jsonify({
         "message": "Datos cargados",
@@ -159,6 +159,7 @@ def getMedicamentos():
     Datos = []
     for med in Medicamentos:
         admin = {
+            'Id':med.id,
             'Nombre': med.nombre,
             'Precio': med.precio,
             'Descripcion': med.descripcion,
@@ -168,7 +169,7 @@ def getMedicamentos():
 
     return jsonify({
         "message": "Medicamentos",
-        "product": Datos
+        "medicamentos": Datos
     })
 
 
