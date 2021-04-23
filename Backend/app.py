@@ -226,6 +226,7 @@ def getEnfermeras():
     Datos = []
     for enfermera in Enfermeras:
         enfermera = {
+            'Id':enfermera.id,
             'Nombre': enfermera.nombre,
             'Apellido': enfermera.apellido,
             'FechaNacimiento': enfermera.fechaNacimiento,
