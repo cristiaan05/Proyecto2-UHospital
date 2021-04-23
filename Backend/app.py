@@ -29,6 +29,8 @@ Users.append(User("Cesar", "Reyes", "01-01-01",
 Users.append(User("Ariel", "Bautista", "01-01-01",
              "M", "admin2", "1234", "12345678", 0))
 
+# ----------------------------CARGAS--------MASIVAS-----------------------------------------------------------------
+
 
 @app.route('/cargarPacientes', methods=['POST'])
 def cargar():
@@ -44,7 +46,7 @@ def cargar():
     with open(filename) as File:
         reader = csv.DictReader(File)
         for row in reader:
-            contador_pacientes+=1
+            contador_pacientes += 1
             nombre = row['Nombre']
             apellido = row['Apellido']
             fechaNacimiento = row['Fecha']
@@ -146,6 +148,7 @@ def cargarMedicamentos():
     return jsonify({
         "message": "Datos cargados",
     })
+# ---------------------------------------------------------------------------------------------------------------------
 
 
 @app.route('/medicamentos')
@@ -172,7 +175,7 @@ def getMedicamentos():
 @app.route('/pacientes', methods=['GET'])
 def getPacientes():
     # return render_template("modAdmin.html")
-    global Users,Pacientes
+    global Users, Pacientes
     Datos = []
     for user in Pacientes:
         paciente = {
@@ -202,7 +205,7 @@ def getDoctores():
         doctor = {
             'Nombre': doctor.nombre,
             'Apellido': doctor.appellido,
-            'Fecha Nacimiento': doctor.fechaNacimiento,
+            'FechaNacimiento': doctor.fechaNacimiento,
             'Sexo': doctor.sexo,
             'Username': doctor.username,
             'Passsword': doctor.password,
@@ -270,7 +273,7 @@ def getPacienteId(pacienteId):
     for paciente in Pacientes:
         if paciente.id == pacienteId:
             pacientee = {
-                'Id':paciente.id,
+                'Id': paciente.id,
                 'Nombre': paciente.nombre,
                 'Apellido': paciente.apellido,
                 'FechaNacimiento': paciente.fechaNacimiento,
@@ -297,6 +300,7 @@ def getDoctorId(doctorId):
     for doctor in Doctores:
         if doctor.id == doctorId:
             doctorr = {
+                'Id': doctor.id,
                 'Nombre': doctor.nombre,
                 'Apellido': doctor.appellido,
                 'Fecha Nacimiento': doctor.fechaNacimiento,
@@ -405,18 +409,18 @@ def editarDoctor(doctorId):
     Datos = []
     for doctor in Doctores:
         if doctor.id == doctorId:
-            doctor.nombre = request.form['Nombre']
-            doctor.apellido = request.form['Apellido']
-            doctor.fechaNacimiento = request.form['FechaNacimiento']
-            doctor.sexo = request.form['Sexo']
-            doctor.username = request.form['Username']
-            doctor.password = request.form['Password']
-            doctor.especialidad = request.form['Especialidad']
-            doctor.telefono = request.form['Telefono']
+            doctor.nombre = request.json['Nombre']
+            doctor.apellido = request.json['Apellido']
+            doctor.fechaNacimiento = request.json['FechaNacimiento']
+            doctor.sexo = request.json['Sexo']
+            doctor.username = request.json['Username']
+            doctor.password = request.json['Password']
+            doctor.especialidad = request.json['Especialidad']
+            doctor.telefono = request.json['Telefono']
             doctorr = {
                 'Nombre': doctor.nombre,
                 'Apellido': doctor.apellido,
-                'Fecha Nacimiento': doctor.fechaNacimiento,
+                'FechaNacimiento': doctor.fechaNacimiento,
                 'Sexo': doctor.sexo,
                 'Username': doctor.username,
                 'Passsword': doctor.password,
@@ -491,6 +495,8 @@ def editarMedicamento(medId):
             "message": "No se encontro el medicamento"
         })
 # ------------------------FUNCIONES-----------ELIMINAR-----------PACIENTE----------------------------------------
+
+
 @app.route('/eliminarPaciente/<int:pacienteId>', methods=['DELETE'])
 def eliminarPaciente(pacienteId):
     Datos = []
@@ -514,6 +520,30 @@ def eliminarPaciente(pacienteId):
             "message": "No se encontro el paciente"
         })
 
+
+@app.route('/eliminarDoctor/<int:doctorId>', methods=['DELETE'])
+def eliminarDoctor(doctorId):
+    Datos = []
+    for doctor in Doctores:
+        if doctor.id == doctorId:
+            doctorr = {
+                'Nombre': doctor.nombre,
+                'Apellido': doctor.apellido,
+                'Fecha Nacimiento': doctor.fechaNacimiento,
+                'Sexo': doctor.sexo,
+                'Username': doctor.username,
+                'Passsword': doctor.password,
+                'Especialidad':doctor.especialidad,
+                'Telefono': doctor.telefono
+            }
+            Doctores.remove(paciente)
+            return jsonify({
+                "message": "Doctor eliminado"
+            })
+    if len(Datos) <= 0:
+        return jsonify({
+            "message": "No se encontro el paciente"
+        })
 
 
 # ------------------------MODULO-----------PACIENTE---------------------------------------------------
