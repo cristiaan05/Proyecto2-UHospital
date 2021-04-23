@@ -189,7 +189,6 @@ def getPacientes():
             'Telefono': user.telefono
         }
         Datos.append(paciente)
-        # Datos.append(admin)
     return jsonify({
         "message": "Pacientes",
         "pacientes": Datos
@@ -214,7 +213,6 @@ def getDoctores():
             'Telefono': doctor.telefono
         }
         Datos.append(doctor)
-        # Datos.append(admin)
     return jsonify({
         "message": "Doctores",
         "doctores": Datos
@@ -237,7 +235,6 @@ def getEnfermeras():
             'Telefono': enfermera.telefono
         }
         Datos.append(enfermera)
-        # Datos.append(admin)
     return jsonify({
         "message": "Enfermeras",
         "enfermeras": Datos
