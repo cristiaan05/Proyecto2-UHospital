@@ -120,7 +120,7 @@ def cargarEnfermeras():
             Users.append(User(nombre, apellido, fechaNacimiento,
                          sexo, username, password, telefono, 2))
             Enfermeras.append(Enfermera(
-                id, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))
+                contador_enfermeras, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))
         # print (results)
     return jsonify({
         "message": "Datos cargados",
@@ -138,10 +138,8 @@ def cargarMedicamentos():
     # f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     with open(filename) as File:
         reader = csv.DictReader(File)
-        x = 0
         for row in reader:
-            x = x+1
-            id = x
+            contador_med+=1
             nombre = row['Nombre']
             precio = row['Precio']
             descripcion = row['Descripcion']
