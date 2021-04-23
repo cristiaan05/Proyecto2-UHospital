@@ -66,6 +66,8 @@ def cargar():
 
 @app.route('/cargarDoctores', methods=['POST'])
 def cargarDcotores():
+    global Doctores
+    contador_doctores = len(Doctores)
     import csv
     results = []
     f = request.files['archivo']
@@ -75,8 +77,7 @@ def cargarDcotores():
         reader = csv.DictReader(File)
         x = 0
         for row in reader:
-            x = x+1
-            id = x
+            contador_doctores += 1
             nombre = row['Nombre']
             apellido = row['Apellido']
             fechaNacimiento = row['Fecha']
@@ -87,7 +88,7 @@ def cargarDcotores():
             telefono = row['Telefono']
             Users.append(User(nombre, apellido, fechaNacimiento,
                          sexo, username, password, telefono, 1))
-            Doctores.append(Doctor(id, nombre, apellido, fechaNacimiento,
+            Doctores.append(Doctor(contador_doctores, nombre, apellido, fechaNacimiento,
                             sexo, username, password, especialidad, telefono))
         # print (results)
     return jsonify({
@@ -98,6 +99,8 @@ def cargarDcotores():
 @app.route('/cargarEnfermeras', methods=['POST'])
 def cargarEnfermeras():
     import csv
+    global Enfermeras
+    contador_enfermeras=len(Enfermeras)
     results = []
     f = request.files['archivo']
     filename = secure_filename(f.filename)
@@ -106,8 +109,7 @@ def cargarEnfermeras():
         reader = csv.DictReader(File)
         x = 0
         for row in reader:
-            x = x+1
-            id = x
+            contador_enfermeras += 1
             nombre = row['Nombre']
             apellido = row['Apellido']
             fechaNacimiento = row['Fecha']
@@ -128,6 +130,8 @@ def cargarEnfermeras():
 @app.route('/cargarMedicamentos', methods=['POST'])
 def cargarMedicamentos():
     import csv
+    global Medicamentos
+    contador_med=len(Medicamentos)
     results = []
     f = request.files['archivo']
     filename = secure_filename(f.filename)
