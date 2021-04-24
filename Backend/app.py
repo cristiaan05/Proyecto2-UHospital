@@ -476,10 +476,10 @@ def editarMedicamento(medId):
     Datos = []
     for med in Medicamentos:
         if med.id == medId:
-            med.nombre = request.form['Nombre']
-            med.precio = request.form['Precio']
-            med.descripcion = request.form['Descripcion']
-            med.cantidad = request.form['Cantidad']
+            med.nombre = request.json['nombre']
+            med.precio = request.json['precio']
+            med.descripcion = request.json['descripcion']
+            med.cantidad = request.json['cantidad']
             medd = {
                 'Nombre': med.nombre,
                 'Precio': med.precio,
