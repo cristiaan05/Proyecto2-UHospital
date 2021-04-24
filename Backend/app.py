@@ -567,6 +567,25 @@ def eliminarEnfermera(enfermeraId):
             "message": "No se encontro la enfermera"
         })
 
+@app.route('/eliminarMedicamento/<int:medId>', methods=['DELETE'])
+def eliminarEnfermera(medId):
+    Datos = []
+    for medicamento in Medicamentos:
+        if medicamento.id == medId:
+            medicamentoo = {
+                'Nombre': medicamento.nombre,
+                'Precio': medicamento.precio,
+                'Descripcion': medicamento.descripcion,
+                'Cantidad': medicamento.cantidad
+            }
+            Medicamentos.remove(medicamento)
+            return jsonify({
+                "message": "Medicamento Eliminado"
+            })
+    if len(Datos) <= 0:
+        return jsonify({
+            "message": "No se encontro el medicamento"
+        })
 
 
 # ------------------------MODULO-----------PACIENTE---------------------------------------------------
