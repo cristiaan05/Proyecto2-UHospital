@@ -496,8 +496,6 @@ def editarMedicamento(medId):
             "message": "No se encontro el medicamento"
         })
 # ------------------------FUNCIONES-----------ELIMINAR-----------PACIENTE----------------------------------------
-
-
 @app.route('/eliminarPaciente/<int:pacienteId>', methods=['DELETE'])
 def eliminarPaciente(pacienteId):
     Datos = []
