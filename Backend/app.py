@@ -587,7 +587,6 @@ def eliminarEnfermera(medId):
             "message": "No se encontro el medicamento"
         })
 
-
 # ------------------------MODULO-----------PACIENTE---------------------------------------------------
 
 
