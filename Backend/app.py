@@ -568,7 +568,7 @@ def eliminarEnfermera(enfermeraId):
         })
 
 @app.route('/eliminarMedicamento/<int:medId>', methods=['DELETE'])
-def eliminarEnfermera(medId):
+def eliminarMedicamento(medId):
     Datos = []
     for medicamento in Medicamentos:
         if medicamento.id == medId:
