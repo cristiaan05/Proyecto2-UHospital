@@ -100,7 +100,7 @@ def cargarDcotores():
 def cargarEnfermeras():
     import csv
     global Enfermeras
-    contador_enfermeras=len(Enfermeras)
+    contador_enfermeras = len(Enfermeras)
     results = []
     f = request.files['archivo']
     filename = secure_filename(f.filename)
@@ -131,7 +131,7 @@ def cargarEnfermeras():
 def cargarMedicamentos():
     import csv
     global Medicamentos
-    contador_med=len(Medicamentos)
+    contador_med = len(Medicamentos)
     results = []
     f = request.files['archivo']
     filename = secure_filename(f.filename)
@@ -139,7 +139,7 @@ def cargarMedicamentos():
     with open(filename) as File:
         reader = csv.DictReader(File)
         for row in reader:
-            contador_med+=1
+            contador_med += 1
             nombre = row['Nombre']
             precio = row['Precio']
             descripcion = row['Descripcion']
@@ -159,7 +159,7 @@ def getMedicamentos():
     Datos = []
     for med in Medicamentos:
         admin = {
-            'Id':med.id,
+            'Id': med.id,
             'Nombre': med.nombre,
             'Precio': med.precio,
             'Descripcion': med.descripcion,
@@ -227,7 +227,7 @@ def getEnfermeras():
     Datos = []
     for enfermera in Enfermeras:
         enfermera = {
-            'Id':enfermera.id,
+            'Id': enfermera.id,
             'Nombre': enfermera.nombre,
             'Apellido': enfermera.apellido,
             'FechaNacimiento': enfermera.fechaNacimiento,
@@ -354,7 +354,7 @@ def getMedicamentoId(medicamentoId):
     for medicamento in Medicamentos:
         if medicamento.id == medicamentoId:
             medicamentoo = {
-                'Id':medicamento.id,
+                'Id': medicamento.id,
                 'Nombre': medicamento.nombre,
                 'Precio': medicamento.precio,
                 'Descripcion': medicamento.descripcion,
@@ -370,6 +370,28 @@ def getMedicamentoId(medicamentoId):
         return jsonify({
             "message": "No se encontro ningun medicamento"
         })
+
+
+@app.route('/cita/<int:pacienteId>', methods=['GET'])
+def geCitaPaciente(pacienteId):
+    global Citas
+    Datos = []
+    for cita in Citas:
+        if cita.idPaciente == pacienteId:
+            citas = {   
+                'Id': cita.id,
+                'IdPaciente': cita.idPaciente,
+                'Fecha': cita.fecha,
+                'Hora': cita.hora,
+                'Motivo': cita.motivo,
+                'Estado': cita.estado
+            }
+            Datos.append(citas)
+    return jsonify({
+        "message": "Citas Encontradas",
+        "citas": Datos
+    })
+
 # ------------------FUNCIONES---------EDITAR-----------------------------------------------------------
 
 
@@ -496,6 +518,8 @@ def editarMedicamento(medId):
             "message": "No se encontro el medicamento"
         })
 # ------------------------FUNCIONES-----------ELIMINAR-----------PACIENTE----------------------------------------
+
+
 @app.route('/eliminarPaciente/<int:pacienteId>', methods=['DELETE'])
 def eliminarPaciente(pacienteId):
     Datos = []
@@ -543,7 +567,8 @@ def eliminarDoctor(doctorId):
         return jsonify({
             "message": "No se encontro el paciente"
         })
-        
+
+
 @app.route('/eliminarEnfermera/<int:enfermeraId>', methods=['DELETE'])
 def eliminarEnfermera(enfermeraId):
     Datos = []
@@ -566,6 +591,7 @@ def eliminarEnfermera(enfermeraId):
         return jsonify({
             "message": "No se encontro la enfermera"
         })
+
 
 @app.route('/eliminarMedicamento/<int:medId>', methods=['DELETE'])
 def eliminarMedicamento(medId):
@@ -594,20 +620,20 @@ def eliminarMedicamento(medId):
 def solicitarCita():
     global Citas
     contador_cita = len(Citas)
-    id_paciente = request.form['idPaciente']
-    fecha = request.form['fecha']
-    hora = request.form['hora']
-    motivo = request.form['motivo']
+    idPaciente = request.json['idPaciente']
+    fecha = request.json['fecha']
+    hora = request.json['hora']
+    motivo = request.json['motivo']
     estado = "Pendiente"
     doctor = ""
     for cita in Citas:
-        if cita.id_paciente == id_paciente:
+        if cita.idPaciente == idPaciente:
             if cita.estado == "Pendiente" or cita.estado == "Aceptada":
                 return jsonify({
                     "message": "Ya tiene una cita en estado "+cita.estado
                 })
     cita_agregada = {
-        'Id Paciente': id_paciente,
+        'IdPaciente': idPaciente,
         'Fecha': fecha,
         'Hora': hora,
         'Motivo': motivo,
@@ -615,7 +641,7 @@ def solicitarCita():
         'Doctor': ''
     }
     contador_cita += 1
-    Citas.append(Cita(contador_cita, id_paciente,
+    Citas.append(Cita(contador_cita, idPaciente,
                  fecha, hora, motivo, estado, doctor))
     return jsonify({
         "message": "Cita creada exitosamente"
