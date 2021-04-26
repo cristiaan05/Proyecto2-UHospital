@@ -251,7 +251,7 @@ def getCitas():
     for cita in Citas:
         citaa = {
             'Id': cita.id,
-            'Id Paciente': cita.id_paciente,
+            'Id Paciente': cita.idPaciente,
             'Fecha': cita.fecha,
             'Hora': cita.hora,
             'Motivo': cita.motivo,
