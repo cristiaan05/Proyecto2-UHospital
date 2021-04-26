@@ -630,7 +630,7 @@ def solicitarCita():
         if cita.idPaciente == idPaciente:
             if cita.estado == "Pendiente" or cita.estado == "Aceptada":
                 return jsonify({
-                    "message": "Ya tiene una cita en estado "+cita.estado
+                    "message": "Ya tiene una cita"
                 })
     cita_agregada = {
         'IdPaciente': idPaciente,
