@@ -649,7 +649,7 @@ def solicitarCita():
 # ----------------GET MEDICAMENTOS SOLO CON CANTIDAD DISPONIBLE-------------------------------
 
 
-@app.route('/moduloPaciente/medicamentosCompra')
+@app.route('/moduloPaciente/medicamentosCompra',methods=['GET'])
 def getMedicamentosCompra():
     # return render_template("modAdmin.html")
     global Medicamentos
@@ -665,7 +665,7 @@ def getMedicamentosCompra():
             Datos.append(admin)
     return jsonify({
         "message": "Medicamentos",
-        "product": Datos
+        "medicamentos": Datos
     })
 
 # @app.route('/moduloPaciente/agregarProductoPedido')
