@@ -657,6 +657,7 @@ def getMedicamentosCompra():
     for med in Medicamentos:
         if int(med.cantidad) > 0:
             admin = {
+                'Id':med.id,
                 'Nombre': med.nombre,
                 'Precio': med.precio,
                 'Descripcion': med.descripcion,
