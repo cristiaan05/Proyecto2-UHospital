@@ -703,8 +703,8 @@ def getProductosPedido():
             'Precio': x.Precio,
             'Cantidad': x.Cantidad,
             'Subtotal': x.Subtotal
-        }
-        Datos.append(producto)
+            }
+            Datos.append(producto)
     return jsonify({
         "message": "Productos",
         "productos": Datos
