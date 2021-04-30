@@ -677,7 +677,7 @@ def agregarProductoPedido():
     global Productos
     nombreProducto = request.json['nombre']
     precio = request.json['precio']
-    cantidad = request.json['cantidad']
+    cantidad = int(request.json['cantidad'])
     subtotal = precio*cantidad
     producto_agregada = {
         'Nombre': nombreProducto,
