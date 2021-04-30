@@ -672,23 +672,23 @@ def getMedicamentosCompra():
     })
 
 
-@app.route('/moduloPaciente/agregarProductoPedido',methods=['POST'])
-def agregarProductoPedido():
-    global Productos
-    nombreProducto = request.json['nombre']
-    precio = request.json['precio']
-    cantidad = int(request.json['cantidad'])
-    subtotal = precio*cantidad
-    producto_agregada = {
-        'Nombre': nombreProducto,
-        'Precio': precio,
-        'Cantidad': cantidad,
-        'Subtotal': subtotal
-    }
-    Productos.append(Pedido(1,1))
-    return jsonify({
-        "message": "Producto agregado al pedido"
-    })
+# @app.route('/moduloPaciente/agregarProductoPedido',methods=['POST'])
+# def agregarProductoPedido():
+#     global Productos
+#     nombreProducto = request.json['nombre']
+#     precio = request.json['precio']
+#     cantidad = int(request.json['cantidad'])
+#     subtotal = precio*cantidad
+#     producto_agregada = {
+#         'Nombre': nombreProducto,
+#         'Precio': precio,
+#         'Cantidad': cantidad,
+#         'Subtotal': subtotal
+#     }
+#     Productos.append(Pedido(1,1))
+#     return jsonify({
+#         "message": "Producto agregado al pedido"
+#     })
 
 
 @app.route('/moduloPaciente/pedido', methods=['GET'])
