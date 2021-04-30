@@ -5,6 +5,7 @@ from Medicamento import Medicamento
 from Paciente import Paciente
 from Enfermera import Enfermera
 from Cita import Cita
+from Pedido import Pedido
 from flask import Flask, jsonify, request, render_template, url_for, redirect
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
@@ -22,6 +23,7 @@ Pacientes = []
 Enfermeras = []
 Citas = []
 Pedidos = []
+Productos = []
 
 # CREANDO USUARIO ADMINISTRADO
 Users.append(User("Cesar", "Reyes", "01-01-01",
@@ -378,7 +380,7 @@ def geCitaPaciente(pacienteId):
     Datos = []
     for cita in Citas:
         if cita.idPaciente == pacienteId:
-            citas = {   
+            citas = {
                 'Id': cita.id,
                 'IdPaciente': cita.idPaciente,
                 'Fecha': cita.fecha,
@@ -649,7 +651,7 @@ def solicitarCita():
 # ----------------GET MEDICAMENTOS SOLO CON CANTIDAD DISPONIBLE-------------------------------
 
 
-@app.route('/moduloPaciente/medicamentosCompra',methods=['GET'])
+@app.route('/moduloPaciente/medicamentosCompra', methods=['GET'])
 def getMedicamentosCompra():
     # return render_template("modAdmin.html")
     global Medicamentos
@@ -657,7 +659,7 @@ def getMedicamentosCompra():
     for med in Medicamentos:
         if int(med.cantidad) > 0:
             admin = {
-                'Id':med.id,
+                'Id': med.id,
                 'Nombre': med.nombre,
                 'Precio': med.precio,
                 'Descripcion': med.descripcion,
@@ -669,30 +671,43 @@ def getMedicamentosCompra():
         "medicamentos": Datos
     })
 
-# @app.route('/moduloPaciente/agregarProductoPedido')
-# def agregarProductoPedido():
-#     medicamentosPedido=[]
-#     contador_pedido=len(Pedidos)
-#     username = request.form['username']
-#     for cita in Citas:
-#         if cita.id_paciente == id_paciente:
-#             if cita.estado == "Pendiente" or cita.estado == "Aceptada":
-#                 return jsonify({
-#                     "message": "Ya tiene una cita en estado "+cita.estado
-#                 })
-#     cita_agregada = {
-#         'Id Paciente': id_paciente,
-#         'Fecha': fecha,
-#         'Hora': hora,
-#         'Motivo': motivo,
-#         'Estado': estado,
-#         'Doctor':''
-#     }
-#     contador_cita+=1
-#     Citas.append(Cita(contador_cita,id_paciente, fecha, hora, motivo, estado,doctor))
-#     return jsonify({
-#         "message": "Cita creada exitosamente"
-#     })
+
+@app.route('/moduloPaciente/agregarProductoPedido')
+def agregarProductoPedido():
+    global Productos
+    nombreProducto = request.json['nombreProducto']
+    precio = request.json['precio']
+    cantidad = request.json['cantidad']
+    subtotal = precio*cantidad
+    producto_agregada = {
+        'Nombre': nombreProducto,
+        'Precio': precio,
+        'Cantidad': cantidad,
+        'Subtotal': subtotal
+    }
+    Productos.append(producto_agregada)
+    return jsonify({
+        "message": "Producto agregado al pedido"
+    })
+
+
+@app.route('/moduloPaciente/pedido', methods=['GET'])
+def getProductosPedido():
+    # return render_template("modAdmin.html")
+    global Productos
+    Datos = []
+    for p in Productos:
+        producto = {
+            'Nombre': p.Nombre,
+            'Precio': p.Precio,
+            'Cantidad': p.Cantidad,
+            'Subtotal': p.Subtotal
+        }
+        Datos.append(producto)
+    return jsonify({
+        "message": "Productos",
+        "productos": Datos
+    })
 
 
 @app.route('/products')
@@ -747,12 +762,6 @@ def deleteProduct(product_name):
             "product": products
         })
         return jsonify({"message": "Product Not found"})
-
-
-@app.route('/')
-def index():
-    # return app.send_static_file("index.html")
-    return render_template("index.html")
 
 
 @app.route('/login', methods=['GET', 'POST'])
