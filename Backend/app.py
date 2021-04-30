@@ -685,7 +685,7 @@ def agregarProductoPedido():
         'Cantidad': cantidad,
         'Subtotal': subtotal
     }
-    Productos.append(Pedido(1,1,producto_agregada))
+    Productos.append(Pedido(1,1))
     return jsonify({
         "message": "Producto agregado al pedido"
     })
@@ -697,6 +697,7 @@ def getProductosPedido():
     global Productos
     Datos = []
     for p in Productos:
+        print("ssss",p.medicamentos)
         for x in p.medicamentos:
             producto = {
             'Nombre': x.Nombre,
