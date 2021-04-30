@@ -672,7 +672,7 @@ def getMedicamentosCompra():
     })
 
 
-@app.route('/moduloPaciente/agregarProductoPedido')
+@app.route('/moduloPaciente/agregarProductoPedido',methods=['POST'])
 def agregarProductoPedido():
     global Productos
     nombreProducto = request.json['nombreProducto']
