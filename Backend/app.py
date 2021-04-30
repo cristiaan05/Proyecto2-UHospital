@@ -697,11 +697,12 @@ def getProductosPedido():
     global Productos
     Datos = []
     for p in Productos:
-        producto = {
-            'Nombre': p.Nombre,
-            'Precio': p.Precio,
-            'Cantidad': p.Cantidad,
-            'Subtotal': p.Subtotal
+        for x in p.medicamentos:
+            producto = {
+            'Nombre': x.Nombre,
+            'Precio': x.Precio,
+            'Cantidad': x.Cantidad,
+            'Subtotal': x.Subtotal
         }
         Datos.append(producto)
     return jsonify({
