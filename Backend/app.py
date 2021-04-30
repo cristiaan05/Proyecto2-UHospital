@@ -675,7 +675,7 @@ def getMedicamentosCompra():
 @app.route('/moduloPaciente/agregarProductoPedido',methods=['POST'])
 def agregarProductoPedido():
     global Productos
-    nombreProducto = request.json['nombreProducto']
+    nombreProducto = request.json['nombre']
     precio = request.json['precio']
     cantidad = request.json['cantidad']
     subtotal = precio*cantidad
