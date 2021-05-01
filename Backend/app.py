@@ -689,10 +689,11 @@ def agregarProductoPedido():
         'Total': total
     }
     Pedidos.append(Pedido(contador, idProducto,
-                     nombreProducto, cantidad, total))
+                          nombreProducto, cantidad, total))
     return jsonify({
         "message": "Producto agregado al pedido"
     })
+
 
 @app.route('/moduloPaciente/pedido', methods=['GET'])
 def getProductosPedido():
@@ -711,6 +712,30 @@ def getProductosPedido():
         "message": "Productos",
         "pedidos": Datos
     })
+
+    # -----------------------------------------MODULO------------ENFERMERA--------------------------------------------
+@app.route('/moduloEnfermera/citasPendientes', methods=['GET'])
+def getCitas():
+    global Citas
+    Datos = []
+    for cita in Citas:
+        if cita.estado=="Pendiente":
+            citaa = {
+            'Id': cita.id,
+            'Id Paciente': cita.idPaciente,
+            'Fecha': cita.fecha,
+            'Hora': cita.hora,
+            'Motivo': cita.motivo,
+            'Estado': cita.estado
+        }
+        Datos.append(citaa)
+        # Datos.append(admin)
+    return jsonify({
+        "message": "Citas",
+        "citas": Datos
+    })
+
+    # -------------------------------------------------------------------------------------------------------------
 
 
 @app.route('/products')
