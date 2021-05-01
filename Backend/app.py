@@ -682,7 +682,7 @@ def agregarProductoPedido():
     total = request.json['total']
     contador += 1
     pedido = {
-        'Id': contador += 1
+        'Id': contador,
         'IdProducto': idProducto,
         'Precio': precio,
         'Cantidad': cantidad,
