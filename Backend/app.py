@@ -703,7 +703,6 @@ def getProductosPedido():
         pedido = {
             'Id': p.idProducto,
             'Nombre': p.nombreProducto,
-            'Precio': p.precio,
             'Cantidad': p.cantidad,
             'Total': p.total
         }
