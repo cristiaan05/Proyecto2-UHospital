@@ -688,7 +688,7 @@ def agregarProductoPedido():
         'Cantidad': cantidad,
         'Total': total
     }
-    Productos.append(Pedido(contador, idProducto,
+    Pedidos.append(Pedido(contador, idProducto,
                      nombreProducto, cantidad, total))
     return jsonify({
         "message": "Producto agregado al pedido"
