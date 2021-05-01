@@ -715,7 +715,7 @@ def getProductosPedido():
 
     # -----------------------------------------MODULO------------ENFERMERA--------------------------------------------
 @app.route('/moduloEnfermera/citasPendientes', methods=['GET'])
-def getCitas():
+def getCitasEnfermera():
     global Citas
     Datos = []
     for cita in Citas:
