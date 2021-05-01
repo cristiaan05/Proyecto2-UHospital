@@ -694,7 +694,6 @@ def agregarProductoPedido():
         "message": "Producto agregado al pedido"
     })
 
-
 @app.route('/moduloPaciente/pedido', methods=['GET'])
 def getProductosPedido():
     # return render_template("modAdmin.html")
