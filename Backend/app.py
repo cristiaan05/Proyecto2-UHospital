@@ -23,7 +23,7 @@ Pacientes = []
 Enfermeras = []
 Citas = []
 Pedidos = []
-Productos = []
+
 
 # CREANDO USUARIO ADMINISTRADO
 Users.append(User("Cesar", "Reyes", "01-01-01",
@@ -109,7 +109,6 @@ def cargarEnfermeras():
     # f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     with open(filename) as File:
         reader = csv.DictReader(File)
-        x = 0
         for row in reader:
             contador_enfermeras += 1
             nombre = row['Nombre']
@@ -672,44 +671,47 @@ def getMedicamentosCompra():
     })
 
 
-# @app.route('/moduloPaciente/agregarProductoPedido',methods=['POST'])
-# def agregarProductoPedido():
-#     global Productos
-#     nombreProducto = request.json['nombre']
-#     precio = request.json['precio']
-#     cantidad = int(request.json['cantidad'])
-#     subtotal = precio*cantidad
-#     producto_agregada = {
-#         'Nombre': nombreProducto,
-#         'Precio': precio,
-#         'Cantidad': cantidad,
-#         'Subtotal': subtotal
-#     }
-#     Productos.append(Pedido(1,1))
-#     return jsonify({
-#         "message": "Producto agregado al pedido"
-#     })
+@app.route('/moduloPaciente/agregarProductoPedido', methods=['POST'])
+def agregarProductoPedido():
+    global Pedidos
+    contador = len(Pedidos)
+    idProducto = request.json['idProducto']
+    nombreProducto = request.json['nombreProducto']
+    cantidad = request.json['cantidad']
+    # subtotal = request.json['subtotal']
+    total = request.json['total']
+    contador += 1
+    pedido = {
+        'Id': contador += 1
+        'IdProducto': idProducto,
+        'Precio': precio,
+        'Cantidad': cantidad,
+        'Total': total
+    }
+    Productos.append(Pedido(contador, idProducto,
+                     nombreProducto, cantidad, total))
+    return jsonify({
+        "message": "Producto agregado al pedido"
+    })
 
 
 @app.route('/moduloPaciente/pedido', methods=['GET'])
 def getProductosPedido():
     # return render_template("modAdmin.html")
-    global Productos
+    global Pedidos
     Datos = []
-    for p in Productos:
-        print("ssss",p.medicamentos)
-        for x in p.medicamentos:
-            producto = {
-            'Nombre': x.Nombre,
-            'Precio': x.Precio,
-            'Cantidad': x.Cantidad,
-            'Subtotal': x.Subtotal
-            }
-            print(x)
-            Datos.append(producto)
+    for p in Pedidos:
+        pedido = {
+            'Id': p.id,
+            'Nombre': p.nombre,
+            'Precio': p.precio,
+            'Cantidad': p.cantidad,
+            'Total': p.total
+        }
+        Datos.append(pedido)
     return jsonify({
         "message": "Productos",
-        "productos": Datos
+        "pedidos": Datos
     })
 
 

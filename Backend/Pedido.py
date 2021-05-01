@@ -1,6 +1,9 @@
 class Pedido:
-    def __init__(self,id,idPaciente,medicamentos):
+    def __init__(self,id,idProducto,nombreProducto,cantidad,total):
         self.id=id
-        self.idPaciente=idPaciente
-        self.medicamentos=[]
+        self.idProducto=idProducto
+        self.nombreProducto=nombreProducto
+        self.cantidad=cantidad
+        
+        self.total=total
         
