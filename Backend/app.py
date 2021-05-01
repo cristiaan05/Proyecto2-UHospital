@@ -684,7 +684,7 @@ def agregarProductoPedido():
     pedido = {
         'Id': contador,
         'IdProducto': idProducto,
-        'Precio': precio,
+        'Nombre': nombreProducto,
         'Cantidad': cantidad,
         'Total': total
     }
