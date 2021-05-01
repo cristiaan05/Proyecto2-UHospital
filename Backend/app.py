@@ -701,8 +701,8 @@ def getProductosPedido():
     Datos = []
     for p in Pedidos:
         pedido = {
-            'Id': p.id,
-            'Nombre': p.nombre,
+            'Id': p.idProducto,
+            'Nombre': p.nombreProducto,
             'Precio': p.precio,
             'Cantidad': p.cantidad,
             'Total': p.total
