@@ -388,7 +388,8 @@ def geCitaPaciente(pacienteId):
                 'Fecha': cita.fecha,
                 'Hora': cita.hora,
                 'Motivo': cita.motivo,
-                'Estado': cita.estado
+                'Estado': cita.estado,
+                'Doctor':cita.doctor
             }
             Datos.append(citas)
     return jsonify({
