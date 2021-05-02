@@ -520,6 +520,26 @@ def editarMedicamento(medId):
         return jsonify({
             "message": "No se encontro el medicamento"
         })
+
+@app.route('/modificarCita/<int:citaId>', methods=['PUT'])
+def editarCita(citaId):
+    Datos = []
+    for cita in Citas:
+        if cita.id == citaId:
+            cita.estado = "Aceptada"
+            cita.doctor = request.json['doctor']
+            est = {
+                'Estado': cita.estado,
+                'Doctor': cita.doctor
+            }
+            Datos.append(est)
+            return jsonify({
+                "message": "Cita modificada"
+            })
+    if len(Datos) <= 0:
+        return jsonify({
+            "message": "No se encontro la cita"
+        })
 # ------------------------FUNCIONES-----------ELIMINAR-----------PACIENTE----------------------------------------
 
 
@@ -726,7 +746,7 @@ def getCitasEnfermera():
         if cita.estado == "Pendiente":
             citaa = {
                 'Id': cita.id,
-                'Id Paciente': cita.idPaciente,
+                'IdPaciente': cita.idPaciente,
                 'Fecha': cita.fecha,
                 'Hora': cita.hora,
                 'Motivo': cita.motivo,
