@@ -730,10 +730,7 @@ def getCitasEnfermera():
                 'Motivo': cita.motivo,
                 'Estado': cita.estado
             }
-        else:
-            citaa = {   
-            }
-        Datos.append(citaa)
+            Datos.append(citaa)
         # Datos.append(admin)
     return jsonify({
         "message": "Citas",
