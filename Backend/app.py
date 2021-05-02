@@ -766,14 +766,14 @@ def getCitasAceptadasEnfermera():
 def agregarFactura():
     global Facturas
     contador_fac = len(Facturas)
-    Datos=[]
-    fecha= request.json['fecha']
-    nombre= request.json['nombre']
-    doctor= request.json['doctor']
-    precioConsulta= request.json['precioConsulta']
-    costoOperacion= request.json['costoOperacion']
-    costoInter= request.json['costoInter']
-    total= request.json['total']
+    Datos = []
+    fecha = request.json['fecha']
+    nombre = request.json['nombre']
+    doctor = request.json['doctor']
+    precioConsulta = request.json['precioConsulta']
+    costoOperacion = request.json['costoOperacion']
+    costoInter = request.json['costoInter']
+    total = request.json['total']
     contador_fac += 1
     facturaa = {
         'Id': contador_fac,
@@ -790,7 +790,29 @@ def agregarFactura():
                     doctor, costoOperacion, costoInter, total))
     return jsonify({
         "message": "Factura agregada",
-        "factura":Datos
+        "factura": Datos
+    })
+
+
+@app.route('/moduloEnfermera/facturas', methods=['GET'])
+def getfacturas():
+    global Facturas
+   Datos = []
+    for factura in Facturas:
+        facturaa = {
+            'Id': factura.id,
+            'Fecha': factura.fecha,
+            'Nombre': factura.nombre,
+            'Doctor': factura.doctor,
+            'CostoOperacion': factura.costoOperacion,
+            'CostoInternado': factura.costoInter,
+            'Total': factura.total
+        }
+        Datos.append(facturaa)
+        # Datos.append(admin)
+    return jsonify({
+        "message": "Facturas",
+        "facturas": Datos
     })
 
     # -------------------------------------------------------------------------------------------------------------
