@@ -731,7 +731,7 @@ def getCitasEnfermera():
                 'Estado': cita.estado
             }
         else:
-            citaa = {
+            citaa = {   
             }
         Datos.append(citaa)
         # Datos.append(admin)
