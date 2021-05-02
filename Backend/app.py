@@ -203,7 +203,7 @@ def getDoctores():
     global Doctores
     Datos = []
     for doctor in Doctores:
-        doctor = {  
+        doctor = {
             'Id': doctor.id,
             'Nombre': doctor.nombre,
             'Apellido': doctor.apellido,
@@ -714,42 +714,47 @@ def getProductosPedido():
     })
 
     # -----------------------------------------MODULO------------ENFERMERA--------------------------------------------
+
+
 @app.route('/moduloEnfermera/citasPendientes', methods=['GET'])
 def getCitasEnfermera():
     global Citas
     Datos = []
     for cita in Citas:
-        if cita.estado=="Pendiente":
+        if cita.estado == "Pendiente":
             citaa = {
-            'Id': cita.id,
-            'Id Paciente': cita.idPaciente,
-            'Fecha': cita.fecha,
-            'Hora': cita.hora,
-            'Motivo': cita.motivo,
-            'Estado': cita.estado
-        }
+                'Id': cita.id,
+                'Id Paciente': cita.idPaciente,
+                'Fecha': cita.fecha,
+                'Hora': cita.hora,
+                'Motivo': cita.motivo,
+                'Estado': cita.estado
+            }
+        else:
+            citaa = {
+            }
         Datos.append(citaa)
         # Datos.append(admin)
     return jsonify({
         "message": "Citas",
         "citas": Datos
     })
-    
+
 
 @app.route('/moduloEnfermera/citasAceptadas', methods=['GET'])
 def getCitasAceptadasEnfermera():
     global Citas
     Datos = []
     for cita in Citas:
-        if cita.estado=="Aceptada":
+        if cita.estado == "Aceptada":
             citaa = {
-            'Id': cita.id,
-            'Id Paciente': cita.idPaciente,
-            'Fecha': cita.fecha,
-            'Hora': cita.hora,
-            'Motivo': cita.motivo,
-            'Estado': cita.estado
-        }
+                'Id': cita.id,
+                'Id Paciente': cita.idPaciente,
+                'Fecha': cita.fecha,
+                'Hora': cita.hora,
+                'Motivo': cita.motivo,
+                'Estado': cita.estado
+            }
         Datos.append(citaa)
         # Datos.append(admin)
     return jsonify({
