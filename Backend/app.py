@@ -763,15 +763,16 @@ def getCitasAceptadasEnfermera():
 
 
 @app.route('/moduloEnfermera/crearFactura', methods=['POST'])
-def agregarProductoPedido():
+def agregarFactura():
     global Facturas
     contador_fac = len(Facturas)
-    fecha: request.json['fecha'],
-    nombre: request.json['nombre'],
-    doctor: request.json['doctor'],
-    precioConsulta: request.json['precioConsulta'],
-    costoOperacion: request.json['costoOperacion'],
-    costoInter: request.json['costoInter'],
+    
+    fecha: request.json['fecha']
+    nombre: request.json['nombre']
+    doctor: request.json['doctor']
+    precioConsulta: request.json['precioConsulta']
+    costoOperacion: request.json['costoOperacion']
+    costoInter: request.json['costoInter']
     total: request.json['total']
     contador_fac += 1
     facturaa = {
