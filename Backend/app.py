@@ -777,13 +777,13 @@ def agregarFactura():
     contador_fac += 1
     facturaa = {
         'Id': contador_fac,
-        'fecha': fecha,
-        'nombre': nombre,
-        'doctor': doctor,
-        'precioConsulta': precioConsulta,
-        'costoOperacion': costoOperacion,
-        'costoInter': costoInter,
-        'total': total
+        'Fecha': fecha,
+        'Nombre': nombre,
+        'Doctor': doctor,
+        'PrecioConsulta': precioConsulta,
+        'CostoOperacion': costoOperacion,
+        'CostoInter': costoInter,
+        'Total': total
     }
     Facturas.append(Factura(contador_fac, fecha, nombre, hora,
                     doctor, costoOperacion, costoInter, total))
