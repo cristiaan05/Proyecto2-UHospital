@@ -767,13 +767,13 @@ def agregarFactura():
     global Facturas
     contador_fac = len(Facturas)
     
-    fecha: request.json['fecha']
-    nombre: request.json['nombre']
-    doctor: request.json['doctor']
-    precioConsulta: request.json['precioConsulta']
-    costoOperacion: request.json['costoOperacion']
-    costoInter: request.json['costoInter']
-    total: request.json['total']
+    fecha= request.json['fecha']
+    nombre= request.json['nombre']
+    doctor= request.json['doctor']
+    precioConsulta= request.json['precioConsulta']
+    costoOperacion= request.json['costoOperacion']
+    costoInter= request.json['costoInter']
+    total= request.json['total']
     contador_fac += 1
     Facturas.append(Factura(contador_fac, fecha, nombre, hora,
                     doctor, costoOperacion, costoInter, total))
