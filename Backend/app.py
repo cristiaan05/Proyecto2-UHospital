@@ -797,7 +797,7 @@ def agregarFactura():
 @app.route('/moduloEnfermera/facturas', methods=['GET'])
 def getfacturas():
     global Facturas
-   Datos = []
+    Datos = []
     for factura in Facturas:
         facturaa = {
             'Id': factura.id,
