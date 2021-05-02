@@ -258,7 +258,8 @@ def getCitas():
             'Fecha': cita.fecha,
             'Hora': cita.hora,
             'Motivo': cita.motivo,
-            'Estado': cita.estado
+            'Estado': cita.estado,
+            'Doctor':cita.doctor
         }
         Datos.append(citaa)
         # Datos.append(admin)
@@ -750,7 +751,8 @@ def getCitasEnfermera():
                 'Fecha': cita.fecha,
                 'Hora': cita.hora,
                 'Motivo': cita.motivo,
-                'Estado': cita.estado
+                'Estado': cita.estado,
+                'Doctor':cita.doctor
             }
             Datos.append(citaa)
         # Datos.append(admin)
