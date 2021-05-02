@@ -6,6 +6,7 @@ from Paciente import Paciente
 from Enfermera import Enfermera
 from Cita import Cita
 from Pedido import Pedido
+from Factura import Factura
 from flask import Flask, jsonify, request, render_template, url_for, redirect
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
@@ -23,6 +24,7 @@ Pacientes = []
 Enfermeras = []
 Citas = []
 Pedidos = []
+Facturas = []
 
 
 # CREANDO USUARIO ADMINISTRADO
@@ -625,7 +627,7 @@ def solicitarCita():
     fecha = request.json['fecha']
     hora = request.json['hora']
     motivo = request.json['motivo']
-    estado = "Aceptada"
+    estado = "Pendiente"
     doctor = ""
     for cita in Citas:
         if cita.idPaciente == idPaciente:
@@ -757,6 +759,35 @@ def getCitasAceptadasEnfermera():
     return jsonify({
         "message": "Citas",
         "citas": Datos
+    })
+
+
+@app.route('/moduloEnfermera/crearFactura', methods=['POST'])
+def agregarProductoPedido():
+    global Facturas
+    contador_fac = len(Facturas)
+    fecha: request.json['fecha'],
+    nombre: request.json['nombre'],
+    doctor: request.json['doctor'],
+    precioConsulta: request.json['precioConsulta'],
+    costoOperacion: request.json['costoOperacion'],
+    costoInter: request.json['costoInter'],
+    total: request.json['total']
+    contador_fac += 1
+    facturaa = {
+        'Id': contador_fac,
+        'fecha': fecha,
+        'nombre': nombre,
+        'doctor': doctor,
+        'precioConsulta': precioConsulta,
+        'costoOperacion': costoOperacion,
+        'costoInter': costoInter,
+        'total': total
+    }
+    Facturas.append(Factura(contador_fac, fecha, nombre, hora,
+                    doctor, costoOperacion, costoInter, total))
+    return jsonify({
+        "message": "Factura agregada"
     })
 
     # -------------------------------------------------------------------------------------------------------------
