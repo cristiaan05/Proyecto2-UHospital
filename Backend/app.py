@@ -766,7 +766,7 @@ def getCitasAceptadasEnfermera():
 def agregarFactura():
     global Facturas
     contador_fac = len(Facturas)
-    
+    Datos=[]
     fecha= request.json['fecha']
     nombre= request.json['nombre']
     doctor= request.json['doctor']
@@ -775,10 +775,22 @@ def agregarFactura():
     costoInter= request.json['costoInter']
     total= request.json['total']
     contador_fac += 1
+    facturaa = {
+        'Id': contador_fac,
+        'Fecha': fecha,
+        'Nombre': nombre,
+        'Doctor': doctor,
+        'PrecioConsulta': precioConsulta,
+        'CostoOperacion': costoOperacion,
+        'CostoInter': costoInter,
+        'Total': total
+    }
+    Datos.append(facturaa)
     Facturas.append(Factura(contador_fac, fecha, nombre,
                     doctor, costoOperacion, costoInter, total))
     return jsonify({
-        "message": "Factura agregada"
+        "message": "Factura agregada",
+        "factura":Datos
     })
 
     # -------------------------------------------------------------------------------------------------------------
