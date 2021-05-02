@@ -542,6 +542,24 @@ def editarCita(citaId):
         return jsonify({
             "message": "No se encontro la cita"
         })
+
+@app.route('/rechazarCita/<int:citaId>', methods=['PUT'])
+def rechazarCita(citaId):
+    Datos = []
+    for cita in Citas:
+        if cita.id == citaId:
+            cita.estado = "Rechazada"
+            est = {
+                'Estado': cita.estado,
+            }
+            Datos.append(est)
+            return jsonify({
+                "message": "Cita modificada"
+            })
+    if len(Datos) <= 0:
+        return jsonify({
+            "message": "No se encontro la cita"
+        })
 # ------------------------FUNCIONES-----------ELIMINAR-----------PACIENTE----------------------------------------
 
 
