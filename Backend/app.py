@@ -775,16 +775,6 @@ def agregarFactura():
     costoInter: request.json['costoInter']
     total: request.json['total']
     contador_fac += 1
-    facturaa = {
-        'Id': contador_fac,
-        'Fecha': fecha,
-        'Nombre': nombre,
-        'Doctor': doctor,
-        'PrecioConsulta': precioConsulta,
-        'CostoOperacion': costoOperacion,
-        'CostoInter': costoInter,
-        'Total': total
-    }
     Facturas.append(Factura(contador_fac, fecha, nombre, hora,
                     doctor, costoOperacion, costoInter, total))
     return jsonify({
