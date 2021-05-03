@@ -1025,7 +1025,7 @@ def login():
             })
         if len(Datos) <= 0:
             return jsonify({
-                "message": "Incorrecta"
+                "message": "Incorrecto"
             })
 
         # return jsonify({
