@@ -905,6 +905,27 @@ def getRecetas():
         "message": "Recetas",
         "recetas": Datos
     })
+    
+@app.route('/moduloDoctor/citas/<string:doctor>', methods=['GET'])
+def getCitasAceptadasEnfermera(doctor):
+    global Citas
+    Datos = []
+    for cita in Citas:
+        if cita.doctor == doctor:
+            citaa = {
+                'Id': cita.id,
+                'Id Paciente': cita.idPaciente,
+                'Fecha': cita.fecha,
+                'Hora': cita.hora,
+                'Motivo': cita.motivo,
+                'Estado': cita.estado
+            }
+            Datos.append(citaa)
+        # Datos.append(admin)
+    return jsonify({
+        "message": "Citas",
+        "citas": Datos
+    })
 
     # -------------------------------------------------------------------------------------------------------------
 
