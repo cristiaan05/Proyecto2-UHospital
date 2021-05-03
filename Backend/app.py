@@ -171,11 +171,11 @@ def getUsuarios():
             'Telefono':user.telefono,
             'TipoUsuario':user.tipoUsuario
         }
-        Datos.append(admin)
+        Datos.append(userr)
 
     return jsonify({
-        "message": "Medicamentos",
-        "medicamentos": Datos
+        "message": "Usuarios",
+        "usuarios": Datos
     })
 
 
