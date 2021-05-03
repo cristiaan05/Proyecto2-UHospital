@@ -907,7 +907,7 @@ def getRecetas():
     })
     
 @app.route('/moduloDoctor/citas/<string:doctor>', methods=['GET'])
-def getCitasAceptadasEnfermera(doctor):
+def getCitasDoctor(doctor):
     global Citas
     Datos = []
     for cita in Citas:
