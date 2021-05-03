@@ -946,7 +946,7 @@ def editarCitaDoc(citaId):
         })
         
 @app.route('/noModificarCitaDoctor/<int:citaId>', methods=['PUT'])
-def editarCitaDoc(citaId):
+def noEditarCitaDoc(citaId):
     Datos = []
     for cita in Citas:
         if cita.id == citaId:
