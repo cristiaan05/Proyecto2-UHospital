@@ -996,7 +996,7 @@ def noEditarCitaDoc(citaId):
     # -------------------------------------------------------------------------------------------------------------
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
     Datos = []
     if request.method == 'POST':
