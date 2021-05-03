@@ -887,6 +887,25 @@ def crearReceta():
         "receta": Datos
     })
 
+@app.route('/moduloDoctor/recetas', methods=['GET'])
+def getRecetas():
+    global Recetas
+    Datos = []
+    for receta in Recetas:
+        recetaa = {
+            'Id': receta.id,
+            'Fecha': receta.fecha,
+            'Nombre': receta.nombre,
+            'Padecimiento': receta.padecimiento,
+            'Descripcion': receta.descripcion
+        }
+        Datos.append(recetaa)
+        # Datos.append(admin)
+    return jsonify({
+        "message": "Recetas",
+        "recetas": Datos
+    })
+
     # -------------------------------------------------------------------------------------------------------------
 
 
