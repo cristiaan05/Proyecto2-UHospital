@@ -36,8 +36,6 @@ Users.append(User("Ariel", "Bautista", "01-01-01",
              "M", "admin2", "1234", "12345678", 0))
 
 # ----------------------------CARGAS--------MASIVAS-----------------------------------------------------------------
-
-
 @app.route('/cargarPacientes', methods=['POST'])
 def cargar():
     global Pacientes
