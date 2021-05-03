@@ -53,13 +53,13 @@ def cargar():
         reader = csv.DictReader(File)
         for row in reader:
             contador_pacientes += 1
-            nombre = row['Nombre']
-            apellido = row['Apellido']
-            fechaNacimiento = row['Fecha']
-            sexo = row['Sexo']
-            username = row['Username']
-            password = row['Contrasena']
-            telefono = row['Telefono']
+            nombre = row['nombre']
+            apellido = row['apellido']
+            fechaNacimiento = row['fecha']
+            sexo = row['genero']
+            username = row['usuario']
+            password = row['password']
+            telefono = row['telefono']
             Users.append(User(nombre, apellido, fechaNacimiento,
                          sexo, username, password, telefono, 3))
             Pacientes.append(Paciente(
@@ -84,14 +84,14 @@ def cargarDcotores():
         x = 0
         for row in reader:
             contador_doctores += 1
-            nombre = row['Nombre']
-            apellido = row['Apellido']
-            fechaNacimiento = row['Fecha']
-            sexo = row['Sexo']
-            username = row['Username']
-            password = row['Contrasena']
-            especialidad = row['Especialidad']
-            telefono = row['Telefono']
+            nombre = row['nombre']
+            apellido = row['apellido']
+            fechaNacimiento = row['fecha']
+            sexo = row['genero']
+            username = row['usuario']
+            password = row['password']
+            especialidad = row['especialidad']
+            telefono = row['telefono']
             Users.append(User(nombre, apellido, fechaNacimiento,
                          sexo, username, password, telefono, 1))
             Doctores.append(Doctor(contador_doctores, nombre, apellido, fechaNacimiento,
@@ -115,13 +115,13 @@ def cargarEnfermeras():
         reader = csv.DictReader(File)
         for row in reader:
             contador_enfermeras += 1
-            nombre = row['Nombre']
-            apellido = row['Apellido']
-            fechaNacimiento = row['Fecha']
-            sexo = row['Sexo']
-            username = row['Username']
-            password = row['Contrasena']
-            telefono = row['Telefono']
+            nombre = row['nombre']
+            apellido = row['apellido']
+            fechaNacimiento = row['fecha']
+            sexo = row['genero']
+            username = row['usuario']
+            password = row['password']
+            telefono = row['telefono']
             Users.append(User(nombre, apellido, fechaNacimiento,
                          sexo, username, password, telefono, 2))
             Enfermeras.append(Enfermera(
@@ -145,10 +145,10 @@ def cargarMedicamentos():
         reader = csv.DictReader(File)
         for row in reader:
             contador_med += 1
-            nombre = row['Nombre']
-            precio = row['Precio']
-            descripcion = row['Descripcion']
-            cantidad = row['Cantidad']
+            nombre = row['nombre']
+            precio = row['precio']
+            descripcion = row['descripcion']
+            cantidad = row['cantidad']
             Medicamentos.append(Medicamento(
                 contador_med, nombre, precio, descripcion, cantidad))
         # print (results)
