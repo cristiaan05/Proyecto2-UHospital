@@ -996,7 +996,7 @@ def noEditarCitaDoc(citaId):
     # -------------------------------------------------------------------------------------------------------------
 
 
-@app.route('/login', methods=['POST','GET'])
+@app.route('/login', methods=['POST'])
 def login():
     Datos = []
     if request.method == 'POST':
@@ -1018,14 +1018,16 @@ def login():
                     'TipoUsuario': user.tipoUsuario
                 }
                 Datos.append(userr)
-                return jsonify({
-                    "message": "Correcto",
-                    "usuario": Datos
-                })
-            else:
-                return jsonify({
-                    "message":"Incorrecto"
-                })
+        if len(Datos) > 0:
+            return jsonify({
+                "message": "Correcto",
+                "usuario": Datos
+            })
+        if len(Datos) <= 0:
+            return jsonify({
+                "message": "Incorrecta"
+            })
+
         # return jsonify({
         #     "message":"HOLA USTED ES DOCTOR"
         # })
