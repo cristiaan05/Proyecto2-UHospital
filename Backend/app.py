@@ -926,6 +926,42 @@ def getCitasDoctor(doctor):
         "message": "Citas",
         "citas": Datos
     })
+    
+@app.route('/modificarCitaDoctor/<int:citaId>', methods=['PUT'])
+def editarCitaDoc(citaId):
+    Datos = []
+    for cita in Citas:
+        if cita.id == citaId:
+            cita.estado = "Completada"
+            est = {
+                'Estado': cita.estado
+            }
+            Datos.append(est)
+            return jsonify({
+                "message": "Cita modificada"
+            })
+    if len(Datos) <= 0:
+        return jsonify({
+            "message": "No se encontro la cita"
+        })
+        
+@app.route('/noModificarCitaDoctor/<int:citaId>', methods=['PUT'])
+def editarCitaDoc(citaId):
+    Datos = []
+    for cita in Citas:
+        if cita.id == citaId:
+            cita.estado = "Aceptada"
+            est = {
+                'Estado': cita.estado
+            }
+            Datos.append(est)
+            return jsonify({
+                "message": "Cita modificada"
+            })
+    if len(Datos) <= 0:
+        return jsonify({
+            "message": "No se encontro la cita"
+        })
 
     # -------------------------------------------------------------------------------------------------------------
 
