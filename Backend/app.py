@@ -157,7 +157,7 @@ def cargarMedicamentos():
     })
 # ---------------------------------------------------------------------------------------------------------------------
 @app.route('/users')
-def getMedicamentos():
+def getUsuarios():
     global Users
     Datos = []
     for user in Users:
