@@ -1003,7 +1003,8 @@ def login():
         global Users
         username = request.json['username']
         password = request.json['password']
-        print("hola")
+        print(username)
+        print(password)
         for user in Users:
             if user.username == username and user.password == password:
                 userr = {
