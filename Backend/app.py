@@ -7,6 +7,7 @@ from Enfermera import Enfermera
 from Cita import Cita
 from Pedido import Pedido
 from Factura import Factura
+from Receta import Receta
 from flask import Flask, jsonify, request, render_template, url_for, redirect
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
@@ -25,6 +26,7 @@ Enfermeras = []
 Citas = []
 Pedidos = []
 Facturas = []
+Recetas = []
 
 
 # CREANDO USUARIO ADMINISTRADO
@@ -259,7 +261,7 @@ def getCitas():
             'Hora': cita.hora,
             'Motivo': cita.motivo,
             'Estado': cita.estado,
-            'Doctor':cita.doctor
+            'Doctor': cita.doctor
         }
         Datos.append(citaa)
         # Datos.append(admin)
@@ -389,7 +391,7 @@ def geCitaPaciente(pacienteId):
                 'Hora': cita.hora,
                 'Motivo': cita.motivo,
                 'Estado': cita.estado,
-                'Doctor':cita.doctor
+                'Doctor': cita.doctor
             }
             Datos.append(citas)
     return jsonify({
@@ -523,6 +525,7 @@ def editarMedicamento(medId):
             "message": "No se encontro el medicamento"
         })
 
+
 @app.route('/modificarCita/<int:citaId>', methods=['PUT'])
 def editarCita(citaId):
     Datos = []
@@ -542,6 +545,7 @@ def editarCita(citaId):
         return jsonify({
             "message": "No se encontro la cita"
         })
+
 
 @app.route('/rechazarCita/<int:citaId>', methods=['PUT'])
 def rechazarCita(citaId):
@@ -771,7 +775,7 @@ def getCitasEnfermera():
                 'Hora': cita.hora,
                 'Motivo': cita.motivo,
                 'Estado': cita.estado,
-                'Doctor':cita.doctor
+                'Doctor': cita.doctor
             }
             Datos.append(citaa)
         # Datos.append(admin)
@@ -854,6 +858,33 @@ def getfacturas():
     return jsonify({
         "message": "Facturas",
         "facturas": Datos
+    })
+
+    # -------------------------------------------------------------------------------------------------------------
+
+    # --------------------------MODULO-----------------DOCTOR------------------------------------------------------------------
+@app.route('/moduloDoctor/crearReceta', methods=['POST'])
+def crearReceta():
+    global Recetas
+    contador_rec = len(Recetas)
+    Datos = []
+    fecha = request.json['fecha']
+    nombre = request.json['nombre']
+    padecimiento = request.json['padecimiento']
+    descripcion = request.json['descripcion']
+    contador_rec += 1
+    recetaa = {
+        'Id': contador_rec,
+        'Fecha': fecha,
+        'Nombre': nombre,
+        'Padecimiento': padecimiento,
+        'Descripcion': descripcion
+    }
+    Datos.append(recetaa)
+    Recetas.append(Receta(contador_rec,fecha,nombre,padecimiento,descripcion))
+    return jsonify({
+        "message": "Receta agregada",
+        "receta": Datos
     })
 
     # -------------------------------------------------------------------------------------------------------------
