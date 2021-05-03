@@ -156,6 +156,8 @@ def cargarMedicamentos():
         "message": "Datos cargados",
     })
 # ---------------------------------------------------------------------------------------------------------------------
+
+
 @app.route('/users')
 def getUsuarios():
     global Users
@@ -166,10 +168,10 @@ def getUsuarios():
             'Apellido': user.apellido,
             'FechaNacimiento': user.fechaNacimiento,
             'Sexo': user.sexo,
-            'Username':user.username,
-            'Password':user.password,
-            'Telefono':user.telefono,
-            'TipoUsuario':user.tipoUsuario
+            'Username': user.username,
+            'Password': user.password,
+            'Telefono': user.telefono,
+            'TipoUsuario': user.tipoUsuario
         }
         Datos.append(userr)
 
@@ -177,8 +179,6 @@ def getUsuarios():
         "message": "Usuarios",
         "usuarios": Datos
     })
-
-
 
 
 @app.route('/medicamentos')
@@ -886,6 +886,8 @@ def getfacturas():
     # -------------------------------------------------------------------------------------------------------------
 
     # --------------------------MODULO-----------------DOCTOR------------------------------------------------------------------
+
+
 @app.route('/moduloDoctor/crearReceta', methods=['POST'])
 def crearReceta():
     global Recetas
@@ -904,11 +906,13 @@ def crearReceta():
         'Descripcion': descripcion
     }
     Datos.append(recetaa)
-    Recetas.append(Receta(contador_rec,fecha,nombre,padecimiento,descripcion))
+    Recetas.append(Receta(contador_rec, fecha,
+                   nombre, padecimiento, descripcion))
     return jsonify({
         "message": "Receta agregada",
         "receta": Datos
     })
+
 
 @app.route('/moduloDoctor/recetas', methods=['GET'])
 def getRecetas():
@@ -928,7 +932,8 @@ def getRecetas():
         "message": "Recetas",
         "recetas": Datos
     })
-    
+
+
 @app.route('/moduloDoctor/citas/<string:doctor>', methods=['GET'])
 def getCitasDoctor(doctor):
     global Citas
@@ -949,7 +954,8 @@ def getCitasDoctor(doctor):
         "message": "Citas",
         "citas": Datos
     })
-    
+
+
 @app.route('/modificarCitaDoctor/<int:citaId>', methods=['PUT'])
 def editarCitaDoc(citaId):
     Datos = []
@@ -967,7 +973,8 @@ def editarCitaDoc(citaId):
         return jsonify({
             "message": "No se encontro la cita"
         })
-        
+
+
 @app.route('/noModificarCitaDoctor/<int:citaId>', methods=['PUT'])
 def noEditarCitaDoc(citaId):
     Datos = []
@@ -988,26 +995,39 @@ def noEditarCitaDoc(citaId):
 
     # -------------------------------------------------------------------------------------------------------------
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    Datos = []
     if request.method == 'POST':
         global Users
-        username = request.form['username']
-        password = request.form['password']
+        username = request.json['username']
+        password = request.json['password']
         print("hola")
         for user in Users:
             if user.username == username and user.password == password:
-                if user.tipoUsuario == 0:
-                    # return(jsonify(user.nombre))
-                    return redirect(url_for('getAdmins'))
-
-                if user.tipoUsuario == 3:
-                    return redirect(url_for('getPacientes'))
-                    # return jsonify({
-                    #     "message":"HOLA USTED ES DOCTOR"
-                    # })
-
-    return render_template("login.html")
+                userr = {
+                    'Nombre': user.nombre,
+                    'Apellido': user.apellido,
+                    'FechaNacimiento': user.fechaNacimiento,
+                    'Sexo': user.sexo,
+                    'Username': user.username,
+                    'Password': user.password,
+                    'Telefono': user.telefono,
+                    'TipoUsuario': user.tipoUsuario
+                }
+                Datos.append(userr)
+                return jsonify({
+                    "message": "Correcto",
+                    "usuario": Datos
+                })
+            else:
+                return jsonify({
+                    "message":"Incorrecto"
+                })
+        # return jsonify({
+        #     "message":"HOLA USTED ES DOCTOR"
+        # })
 
 
 @app.route('/registroPaciente', methods=['POST'])
