@@ -374,7 +374,7 @@ def getMedicamentoId(medicamentoId):
         })
 
 
-@app.route('/cita/<string:pacienteId>', methods=['GET'])
+@app.route('/cita/<int:pacienteId>', methods=['GET'])
 def geCitaPaciente(pacienteId):
     global Citas
     Datos = []
