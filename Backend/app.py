@@ -268,7 +268,7 @@ def getCitas():
     })
 
 @app.route('/pedidos', methods=['GET'])
-def getCitas():
+def getPedidos():
     # return render_template("modAdmin.html")
     global Pedidos
     Datos = []
@@ -350,7 +350,7 @@ def getEnfermeraId(enfermeraId):
     for enfermera in Enfermeras:
         if enfermera.id == enfermeraId:
             enfermeraa = {
-                'Id':enfermera.id
+                'Id':enfermera.id,
                 'Nombre': enfermera.nombre,
                 'Apellido': enfermera.apellido,
                 'FechaNacimiento': enfermera.fechaNacimiento,
