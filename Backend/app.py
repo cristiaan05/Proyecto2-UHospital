@@ -332,7 +332,7 @@ def getEnfermeraId(enfermeraId):
         if enfermera.id == enfermeraId:
             enfermeraa = {
                 'Nombre': enfermera.nombre,
-                'Apellido': enfermera.appellido,
+                'Apellido': enfermera.apellido,
                 'FechaNacimiento': enfermera.fechaNacimiento,
                 'Sexo': enfermera.sexo,
                 'Username': enfermera.username,
