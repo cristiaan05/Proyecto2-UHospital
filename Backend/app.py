@@ -698,7 +698,8 @@ def getMedicamentosCompra():
     global Medicamentos
     Datos = []
     for med in Medicamentos:
-        if int(med.cantidad) > 0:
+        cantidad=int(med.cantidad)
+        if cantidad > 0:
             admin = {
                 'Id': med.id,
                 'Nombre': med.nombre,
