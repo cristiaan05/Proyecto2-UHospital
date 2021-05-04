@@ -30,9 +30,9 @@ Recetas = []
 
 
 # CREANDO USUARIO ADMINISTRADO
-Users.append(User("Cesar", "Reyes", "01-01-01",
+Users.append(User(0,"Cesar", "Reyes", "01-01-01",
              "M", "admin", "1234", "12345678", 0))
-Users.append(User("Ariel", "Bautista", "01-01-01",
+Users.append(User(1,"Ariel", "Bautista", "01-01-01",
              "M", "admin2", "1234", "12345678", 0))
 
 # ----------------------------CARGAS--------MASIVAS-----------------------------------------------------------------
