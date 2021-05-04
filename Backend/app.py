@@ -53,7 +53,7 @@ def cargaMasiva():
         username = paciente['usuario']
         password = paciente['password']
         telefono = paciente['telefono']
-        Users.append(User(nombre, apellido, fechaNacimiento,
+        Users.append(User(contador_pacientes,nombre, apellido, fechaNacimiento,
                           sexo, username, password, telefono, 3))
         Pacientes.append(Paciente(
             contador_pacientes, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))
@@ -78,7 +78,7 @@ def cargaMasivaDoctores():
         password = doctor['password']
         especialidad = doctor['especialidad']
         telefono = doctor['telefono']
-        Users.append(User(nombre, apellido, fechaNacimiento,
+        Users.append(User(contador_doctores,nombre, apellido, fechaNacimiento,
                           sexo, username, password, telefono, 1))
         Doctores.append(Doctor(contador_doctores, nombre, apellido, fechaNacimiento,
                                sexo, username, password, especialidad, telefono))
@@ -102,7 +102,7 @@ def cargaMasivaEnfermeras():
         username = enfermera['usuario']
         password = enfermera['password']
         telefono = enfermera['telefono']
-        Users.append(User(nombre, apellido, fechaNacimiento,
+        Users.append(User(contador_enfermeras,nombre, apellido, fechaNacimiento,
                           sexo, username, password, telefono, 2))
         Enfermeras.append(Enfermera(
             contador_enfermeras, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))

@@ -1,5 +1,6 @@
 class User:
-    def __init__(self,nombre,apellido,fechaNacimiento,sexo,username,password,telefono,tipoUsuario):
+    def __init__(self,id,nombre,apellido,fechaNacimiento,sexo,username,password,telefono,tipoUsuario):
+        self.id=id
         self.nombre=nombre
         self.apellido=apellido
         self.fechaNacimiento=fechaNacimiento
