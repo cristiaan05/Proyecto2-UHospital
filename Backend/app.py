@@ -269,11 +269,11 @@ def getCitas():
 # -----------------GET--1 PACIENTE,DOCTOR,ENFERMMERA,MEDICAMENTO---------------------------------------------------------
 
 
-@app.route('/paciente/<int:pacienteId>', methods=['GET'])
+@app.route('/paciente/<string:pacienteId>', methods=['GET'])
 def getPacienteId(pacienteId):
     Datos = []
     for paciente in Pacientes:
-        if paciente.id == pacienteId:
+        if paciente.username == pacienteId:
             pacientee = {
                 'Id': paciente.id,
                 'Nombre': paciente.nombre,
@@ -374,7 +374,7 @@ def getMedicamentoId(medicamentoId):
         })
 
 
-@app.route('/cita/<int:pacienteId>', methods=['GET'])
+@app.route('/cita/<string:pacienteId>', methods=['GET'])
 def geCitaPaciente(pacienteId):
     global Citas
     Datos = []
