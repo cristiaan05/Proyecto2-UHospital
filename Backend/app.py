@@ -270,7 +270,7 @@ def getCitas():
 # -----------------GET--1 PACIENTE,DOCTOR,ENFERMMERA,MEDICAMENTO---------------------------------------------------------
 
 
-@app.route('/paciente/<string:pacienteId>', methods=['GET'])
+@app.route('/paciente/<int:pacienteId>', methods=['GET'])
 def getPacienteId(pacienteId):
     Datos = []
     for paciente in Pacientes:
