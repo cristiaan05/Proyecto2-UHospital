@@ -331,6 +331,7 @@ def getEnfermeraId(enfermeraId):
     for enfermera in Enfermeras:
         if enfermera.id == enfermeraId:
             enfermeraa = {
+                'Id':enfermera.id
                 'Nombre': enfermera.nombre,
                 'Apellido': enfermera.apellido,
                 'FechaNacimiento': enfermera.fechaNacimiento,
