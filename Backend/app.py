@@ -274,7 +274,7 @@ def getCitas():
 def getPacienteId(pacienteId):
     Datos = []
     for paciente in Pacientes:
-        if paciente.username == pacienteId:
+        if paciente.id == pacienteId:
             pacientee = {
                 'Id': paciente.id,
                 'Nombre': paciente.nombre,
