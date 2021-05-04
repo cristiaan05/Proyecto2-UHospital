@@ -374,11 +374,10 @@ def getMedicamentoId(medicamentoId):
         })
 
 
-@app.route('/cita', methods=['POST'])
-def geCitaPaciente():
+@app.route('/cita/<int:pacienteId>', methods=['GET'])
+def geCitaPaciente(pacienteId):
     global Citas
     Datos = []
-    pacienteId=request.json['idPaciente']
     for cita in Citas:
         if cita.idPaciente == pacienteId:
             citas = {
