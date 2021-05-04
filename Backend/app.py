@@ -137,6 +137,7 @@ def getUsuarios():
     Datos = []
     for user in Users:
         userr = {
+            'Id':user.id,
             'Nombre': user.nombre,
             'Apellido': user.apellido,
             'FechaNacimiento': user.fechaNacimiento,
