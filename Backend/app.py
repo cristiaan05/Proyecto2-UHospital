@@ -981,6 +981,7 @@ def login():
         for user in Users:
             if user.username == username and user.password == password:
                 userr = {
+                    'Id':user.id,
                     'Nombre': user.nombre,
                     'Apellido': user.apellido,
                     'FechaNacimiento': user.fechaNacimiento,
