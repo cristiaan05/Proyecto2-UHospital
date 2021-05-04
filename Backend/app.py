@@ -286,6 +286,8 @@ def getPedidos():
         "message": "Pedidos",
         "pedidos": Datos
     })
+    
+    
 # -----------------GET--1 PACIENTE,DOCTOR,ENFERMMERA,MEDICAMENTO---------------------------------------------------------
 
 
