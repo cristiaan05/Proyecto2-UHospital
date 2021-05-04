@@ -267,6 +267,25 @@ def getCitas():
         "product": Datos
     })
 
+@app.route('/pedidos', methods=['GET'])
+def getCitas():
+    # return render_template("modAdmin.html")
+    global Pedidos
+    Datos = []
+    for pedido in Pedidos:
+        ped = {
+            'Id': pedido.id,
+            'Id Paciente': pedido.idProducto,
+            'Fecha': pedido.nombreProducto,
+            'Hora': pedido.cantidad,
+            'Motivo': pedido.total
+        }
+        Datos.append(ped)
+        # Datos.append(admin)
+    return jsonify({
+        "message": "Pedidos",
+        "pedidos": Datos
+    })
 # -----------------GET--1 PACIENTE,DOCTOR,ENFERMMERA,MEDICAMENTO---------------------------------------------------------
 
 
@@ -309,7 +328,7 @@ def getDoctorId(doctorId):
                 'Fecha Nacimiento': doctor.fechaNacimiento,
                 'Sexo': doctor.sexo,
                 'Username': doctor.username,
-                'Passsword': doctor.password,
+                'Password': doctor.password,
                 'Especialidad': doctor.especialidad,
                 'Telefono': doctor.telefono
             }
