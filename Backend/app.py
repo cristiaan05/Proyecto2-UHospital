@@ -275,10 +275,10 @@ def getPedidos():
     for pedido in Pedidos:
         ped = {
             'Id': pedido.id,
-            'Id Paciente': pedido.idProducto,
-            'Fecha': pedido.nombreProducto,
-            'Hora': pedido.cantidad,
-            'Motivo': pedido.total
+            'IdProducto': pedido.idProducto,
+            'Nombre': pedido.nombreProducto,
+            'Cantidad': pedido.cantidad,
+            'Total': pedido.total
         }
         Datos.append(ped)
         # Datos.append(admin)
