@@ -36,122 +36,97 @@ Users.append(User("Ariel", "Bautista", "01-01-01",
              "M", "admin2", "1234", "12345678", 0))
 
 # ----------------------------CARGAS--------MASIVAS-----------------------------------------------------------------
+
+
 @app.route('/cargarPacientes', methods=['POST'])
-def cargar():
+def cargaMasiva():
     global Pacientes
     contador_pacientes = len(Pacientes)
-    import csv
-    results = []
-    f = request.files['archivo']
-    print("nombreaa", f)
-    filename = secure_filename(f.filename)
-    print("asdfa"+filename)
-    # f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    with open(filename) as File:
-        reader = csv.DictReader(File)
-        for row in reader:
-            contador_pacientes += 1
-            nombre = row['nombre']
-            apellido = row['apellido']
-            fechaNacimiento = row['fecha']
-            sexo = row['genero']
-            username = row['usuario']
-            password = row['password']
-            telefono = row['telefono']
-            Users.append(User(nombre, apellido, fechaNacimiento,
-                         sexo, username, password, telefono, 3))
-            Pacientes.append(Paciente(
-                contador_pacientes, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))
-        # print (results)
+    usuariosCM = request.json["usuarios"]
+    # print (usuariosCM)
+    for paciente in usuariosCM:
+        contador_pacientes += 1
+        nombre = paciente['nombre']
+        apellido = paciente['apellido']
+        fechaNacimiento = paciente['fecha']
+        sexo = paciente['genero']
+        username = paciente['usuario']
+        password = paciente['password']
+        telefono = paciente['telefono']
+        Users.append(User(nombre, apellido, fechaNacimiento,
+                          sexo, username, password, telefono, 3))
+        Pacientes.append(Paciente(
+            contador_pacientes, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))
     return jsonify({
-        "message": "Datos cargados",
+        "mensaje": "OK"
     })
 
 
 @app.route('/cargarDoctores', methods=['POST'])
-def cargarDcotores():
+def cargaMasivaDoctores():
     global Doctores
     contador_doctores = len(Doctores)
-    import csv
-    results = []
-    f = request.files['archivo']
-    filename = secure_filename(f.filename)
-    # f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    with open(filename) as File:
-        reader = csv.DictReader(File)
-        x = 0
-        for row in reader:
-            contador_doctores += 1
-            nombre = row['nombre']
-            apellido = row['apellido']
-            fechaNacimiento = row['fecha']
-            sexo = row['genero']
-            username = row['usuario']
-            password = row['password']
-            especialidad = row['especialidad']
-            telefono = row['telefono']
-            Users.append(User(nombre, apellido, fechaNacimiento,
-                         sexo, username, password, telefono, 1))
-            Doctores.append(Doctor(contador_doctores, nombre, apellido, fechaNacimiento,
-                            sexo, username, password, especialidad, telefono))
-        # print (results)
+    docs = request.json["doctores"]
+    # print (usuariosCM)
+    for doctor in docs:
+        contador_doctores += 1
+        nombre = doctor['nombre']
+        apellido = doctor['apellido']
+        fechaNacimiento = doctor['fecha']
+        sexo = doctor['genero']
+        username = doctor['usuario']
+        password = doctor['password']
+        especialidad = doctor['especialidad']
+        telefono = doctor['telefono']
+        Users.append(User(nombre, apellido, fechaNacimiento,
+                          sexo, username, password, telefono, 1))
+        Doctores.append(Doctor(contador_doctores, nombre, apellido, fechaNacimiento,
+                               sexo, username, password, especialidad, telefono))
     return jsonify({
-        "message": "Datos cargados",
+        "mensaje": "OK"
     })
 
 
 @app.route('/cargarEnfermeras', methods=['POST'])
-def cargarEnfermeras():
-    import csv
+def cargaMasivaEnfermeras():
     global Enfermeras
     contador_enfermeras = len(Enfermeras)
-    results = []
-    f = request.files['archivo']
-    filename = secure_filename(f.filename)
-    # f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    with open(filename) as File:
-        reader = csv.DictReader(File)
-        for row in reader:
-            contador_enfermeras += 1
-            nombre = row['nombre']
-            apellido = row['apellido']
-            fechaNacimiento = row['fecha']
-            sexo = row['genero']
-            username = row['usuario']
-            password = row['password']
-            telefono = row['telefono']
-            Users.append(User(nombre, apellido, fechaNacimiento,
-                         sexo, username, password, telefono, 2))
-            Enfermeras.append(Enfermera(
-                contador_enfermeras, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))
-        # print (results)
+    enfers = request.json["enfermeras"]
+    # print (usuariosCM)
+    for enfermera in enfers:
+        contador_enfermeras += 1
+        nombre = enfermera['nombre']
+        apellido = enfermera['apellido']
+        fechaNacimiento = enfermera['fecha']
+        sexo = enfermera['genero']
+        username = enfermera['usuario']
+        password = enfermera['password']
+        telefono = enfermera['telefono']
+        Users.append(User(nombre, apellido, fechaNacimiento,
+                          sexo, username, password, telefono, 2))
+        Enfermeras.append(Enfermera(
+            contador_enfermeras, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))
     return jsonify({
-        "message": "Datos cargados",
+        "mensaje": "OK"
     })
 
 
 @app.route('/cargarMedicamentos', methods=['POST'])
-def cargarMedicamentos():
-    import csv
+def cargaMasivaMedicamentos():
     global Medicamentos
     contador_med = len(Medicamentos)
-    results = []
-    f = request.files['archivo']
-    filename = secure_filename(f.filename)
-    # f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    with open(filename) as File:
-        reader = csv.DictReader(File)
-        for row in reader:
-            contador_med += 1
-            nombre = row['nombre']
-            precio = row['precio']
-            descripcion = row['descripcion']
-            cantidad = row['cantidad']
-            Medicamentos.append(Medicamento(
-                contador_med, nombre, precio, descripcion, cantidad))
-        # print (results)
+    meds = request.json["medicamentos"]
+    # print (usuariosCM)
+    for med in meds:
+        contador_med += 1
+        nombre = med['nombre']
+        precio = med['precio']
+        descripcion = med['descripcion']
+        cantidad = med['cantidad']
+        Medicamentos.append(Medicamento(
+            contador_med, nombre, precio, descripcion, cantidad))
     return jsonify({
-        "message": "Datos cargados",
+        "mensaje": "OK"
     })
 # ---------------------------------------------------------------------------------------------------------------------
 
