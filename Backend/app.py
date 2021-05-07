@@ -1034,6 +1034,7 @@ def registroPaciente():
     if request.method == 'POST':
         global Users, Pacientes
         contador_pacientes = len(Pacientes)
+        contador_usuarios = len(Users)
         nombre = request.json['nombre']
         apellido = request.json['apellido']
         fechaNacimiento = request.json['fechaNacimiento']
@@ -1049,7 +1050,8 @@ def registroPaciente():
                 })
         if len(password) >= 8:
             contador_pacientes += 1
-            Users.append(User(nombre, apellido, fechaNacimiento,
+            contador_usuarios+=1
+            Users.append(User(contador_usuarios,nombre, apellido, fechaNacimiento,
                          sexo, username, password, telefono, 3))
             Pacientes.append(Paciente(
                 contador_pacientes, nombre, apellido, fechaNacimiento, sexo, username, password, telefono))
